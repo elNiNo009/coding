@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the makeAnagram function below.
+int makeAnagram(string a, string b) 
+{
+int x=a.length();
+int y=b.length();
+
+int sum_a[26]={0};
+int sum_b[26]={0};
+for(int i=0;i<x;i++)
+sum_a[a[i]-'a']++;
+for(int i=0;i<y;i++)
+sum_b[b[i]-'a']++;
+int result=0;
+for(int i=0;i<26;i++)
+result+=abs(sum_a[i]-sum_b[i]);
+return result;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string a;
+    getline(cin, a);
+
+    string b;
+    getline(cin, b);
+
+    int res = makeAnagram(a, b);
+
+    fout << res << "\n";
+
+    fout.close();
+
+    return 0;
+}

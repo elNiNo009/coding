@@ -1,0 +1,21 @@
+using namespace std;
+int main()
+ {
+	int t;
+	int n;
+	cin>>t;
+ 
+for(int i=0;i<t;i++)
+	{
+	    cin>>n;
+	    int x=0;
+int arr[n];	  
+	    for(int j=0;j<n;j++)
+	    {
+	    cin>>arr[j]; 
+	    x=arr[j]^x;
+	    }
+	    cout<<x<<"\n";
+   }
+return 0;
+}

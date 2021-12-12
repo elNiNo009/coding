@@ -1,0 +1,38 @@
+vector<int> Solution::maxset(vector<int> &A) 
+{
+    vector<int> res;
+    long long sum=0;
+    long long  max_sum=0;
+    int s=0,E=0,S=0;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i]<0)
+        {
+           
+            if(sum>=max_sum)
+            {
+                max_sum=sum;
+                S=s;
+                E=i;
+            }
+            sum=0;
+            s=i+1;
+            
+        }
+        else
+        sum=sum+A[i];
+    }
+    if(max_sum==0 && sum>0)
+    {
+        S=0;
+        E=A.size();
+    }
+    if(sum>max_sum)
+    {
+        E=A.size();
+        S=s;
+    }
+    copy(A.begin()+S,A.begin()+E, back_inserter(res)); 
+    return res;
+    
+}

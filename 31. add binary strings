@@ -1,0 +1,21 @@
+string Solution::addBinary(string A, string B) 
+{
+    int i=0,j=0;
+    string res="";
+    int sum=0;
+    int a = A.size() - 1, b = B.size() - 1; 
+    while(A[i] == ' ') 
+        i++; 
+    while(B[j] == ' ') 
+        j++; 
+    while (a >= i || b >= j || sum == 1) 
+    {   
+     sum += ((a >= i)? A[a] - '0': 0); 
+     sum += ((b >= j)? B[b] - '0': 0);  
+     res = char(sum % 2 + '0') + res; 
+     sum /= 2; 
+     a--;
+     b--;
+    }
+    return res;
+}

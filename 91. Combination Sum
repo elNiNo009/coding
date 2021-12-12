@@ -1,0 +1,49 @@
+void result(vector<int> &ar,int sum,vector<int> &r,int i,vector<vector<int>> &res)
+{
+  if (sum < 0) 
+        return; 
+ 
+    // if we get exact answer 
+    if (sum == 0) 
+    { 
+        res.push_back(r); 
+        return; 
+    } 
+ 
+    // Recur for all remaining elements that 
+    // have value smaller than sum. 
+    while (i < ar.size() && sum - ar[i] >= 0) 
+    { 
+ 
+        // Till every element in the array starting 
+        // from i which can contribute to the sum 
+        r.push_back(ar[i]); // add them to list 
+ 
+        // recur for next numbers 
+        result(ar, sum - ar[i], r, i,res); 
+        i++; 
+ 
+        // remove number from list (backtracking) 
+        r.pop_back(); 
+    } 
+    
+    
+}
+vector<vector<int> > Solution::combinationSum(vector<int> &A, int B) 
+{
+   
+   
+ 
+    
+    int sum=0;
+    int i=0;
+    int n = A.size();
+    sort(A.begin(),A.end());
+    A.erase(unique(A.begin(), A.end()), A.end()); 
+      vector<int> v;
+   vector<vector<int>> res;
+    result(A,B,v,i,res);
+    res.erase(unique(res.begin(), res.end()), res.end());
+ 
+    return res;
+    

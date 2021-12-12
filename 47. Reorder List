@@ -1,0 +1,104 @@
+ListNode* reverse(ListNode* head) 
+{ 
+    ListNode* prev = NULL;     
+    ListNode* curr = head; 
+  
+    while (curr)
+    { 
+        ListNode* next = curr->next; 
+        curr->next = prev; 
+        prev = curr; 
+        curr = next; 
+    } 
+    return prev; 
+} 
+ListNode* reversebw(ListNode* A,int s,int e)
+{
+    if(s==e)
+    return A;
+  ListNode* start=NULL;
+  ListNode* end=NULL;
+  ListNode* prev=NULL;
+  ListNode* next=NULL;
+int i=1;
+ListNode* curr=A;
+while(curr && i<=e)
+{
+    if(i<s)
+    prev=curr;
+    if(i==s)
+    start=curr;
+    if(i==e)
+    {
+        end=curr;
+        next=curr->next;
+    }
+    curr=curr->next;
+    i++;
+}
+end->next=NULL;
+end=reverse(start);
+if(prev)
+prev->next=end;
+else
+A=end;
+
+start->next=next;
+return A;
+    
+}
+
+ListNode* Solution::reorderList(ListNode* L) 
+{
+    int count=0;
+    ListNode* B=L;
+    while(B)
+    {
+        count++;
+        B=B->next;
+    }
+    if(count==1)
+    return L;
+   
+   
+    
+    int half=count/2;
+    //int i=0;
+  
+     ListNode* C=L;
+     reversebw(C,half+1,count);
+      ListNode* first=L->next;
+       ListNode* slow=L;
+      // int i=0;
+      while(first->next && first->next->next)
+    {
+        slow=slow->next;
+        first=first->next->next;
+    }
+  //  cout<<slow->val<<" ";
+    ListNode* L_1 = L; 
+    ListNode* L_2 = slow->next; 
+    slow->next = NULL;
+     ListNode *head = new ListNode(NULL);  
+ListNode* curr=head;
+    while (L_1 || L_2) 
+    { 
+      
+        if (L_1) 
+        { 
+            curr->next = L_1; 
+            curr = curr->next; 
+            L_1 = L_1->next; 
+        } 
+ 
+        if (L_2) 
+        { 
+            curr->next = L_2; 
+            curr = curr->next; 
+            L_2 = L_2->next; 
+        } 
+    } 
+
+    head = (head)->next; 
+    return head;
+}

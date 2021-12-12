@@ -1,0 +1,50 @@
+string Solution::simplifyPath(string A) 
+{
+    string res;
+    res=res+'/';
+    //return res;
+    string check;
+    stack<string> s;
+    for(int i=0;i<A.size();i++)
+    {
+        check.clear();
+        while(A[i]=='/')
+        i++;
+        while(i<A.size()&&A[i]!='/')
+        {
+            check=check+A[i];
+            i++;
+        }
+         if (check.compare("..") == 0) 
+         { 
+            if (!s.empty())  
+                s.pop();             
+         } 
+         else if(check.compare(".") == 0)
+         continue;
+         else if (check.length() != 0)  
+            s.push(check);
+        
+        
+    }
+    stack<string> st1; 
+    while (!s.empty()) { 
+        st1.push(s.top()); 
+        s.pop(); 
+    } 
+  
+    // the st1 will contain the actual res. 
+    while (!st1.empty()) { 
+        string temp = st1.top(); 
+          
+        // if it's the last element no need 
+        // to append "/" 
+        if (st1.size() != 1) 
+            res.append(temp + "/"); 
+        else
+            res.append(temp); 
+  
+        st1.pop(); 
+    }
+    return res;
+}

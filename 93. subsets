@@ -1,0 +1,30 @@
+ vector<vector<int>> res;
+ int n;
+void Powerset(vector<int> &A,int index,vector<int> &v)
+{
+  // cout<<n;
+int n=A.size();
+    if(index==n)
+     { 
+         res.push_back(v);
+         return ;
+     }
+     res.push_back(v);
+      for (int i = index + 1; i < n; i++) 
+      {
+          v.push_back(A[i]);
+          Powerset(A,i,v);
+          v.pop_back();
+      }
+      return ;
+}
+
+vector<vector<int> > Solution::subsets(vector<int> &A) 
+{
+    res.clear();
+   //  int n=A.size();
+     sort(A.begin(),A.end());
+     vector<int> v;
+  Powerset(A,-1,v);
+    return res;
+}

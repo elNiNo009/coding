@@ -1,0 +1,24 @@
+string Next(string s)
+{
+    string res;
+    for(int i=0;i<s.length();i++)
+    {
+        int count=1;
+        while(i+1<s.length() && s[i]==s[i+1])
+        {
+            i++;
+            count++;
+        }
+        res+=to_string(count)+s[i];
+    }
+    return res;
+}
+string Solution::countAndSay(int A) 
+{
+    string s="1";
+    for(int i=1;i<A;i++)
+    {
+        s=Next(s);
+    }
+    return s;
+}

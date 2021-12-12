@@ -1,0 +1,53 @@
+vector<int> Solution::repeatedNumber(const vector<int> &arr)
+{
+    //int A[Arr.size()];
+ //   for(int i=0;i<Arr.size();i++)
+   //   A[i]=Arr[i];
+   vector<int> res;
+   int n=arr.size();
+   //cout<<n;
+   int xor_=n;
+       for (int i = 0; i < n; i++)
+        xor_ = xor_ ^ arr[i] ^ i;
+
+    // x, y stores the duplicate element and missing number
+    int x = 0, y = 0;
+
+    // res stores (x ^ y)
+
+    // find position of the rightmost set bit in res
+    int k = log2(xor_ & -xor_);
+
+    // split the array into two sub-arrays
+    for (int i = 0; i < n; i++)
+    {
+        // array elements that have k'th bit 1
+        if (arr[i] & (1 << k))
+            x = x ^ arr[i];
+
+        // array elements that have k'th bit 0
+        else
+            y = y ^ arr[i];
+    }
+
+    // split the range [1-n] into two sub-range
+    for (int i = 1; i <= n; i++)
+    {
+        // number i have k'th bit 1
+        if (i & (1 << k))
+            x = x ^ i;
+
+        // number i have k'th bit 0
+        else
+            y = y ^ i;
+    }
+        
+    if(find (arr.begin(), arr.end(), x)==arr.end())
+    swap(x,y);
+      res.push_back(x);
+      res.push_back(y);
+ 
+     
+     return res;
+}
+

@@ -1,0 +1,43 @@
+vector<int> Solution::flip(string S) 
+{
+    vector<int> res;
+    int max=INT_MIN;
+    int e=0,s=0;
+    int start=0;
+    int end=0;
+    int z=0,o=0;
+    for(e=0,s=0;e<S.length();e++)
+    {
+        if(S[e]=='0')
+        {
+            z++;
+        }
+        if(S[e]=='1')
+        {
+            o++;
+          
+        }
+        int x=z-o;
+        if(x<0)
+        {
+            z=0;
+            o=0;
+            s=e+1;
+        }
+          if(max<x)
+          {
+        max=x;
+        start=s+1;
+        end=e;
+    }}
+    if(max>0)
+    {
+        res.push_back(start);
+        res.push_back(end);
+    return res;
+        
+    }
+        return res;
+        
+    
+}

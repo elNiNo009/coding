@@ -1,0 +1,26 @@
+vector<vector<int>> res;
+void result(int A,int B,vector<int> v,int i)
+{
+    int n=v.size();
+  //  cout<<"n = "<<n<<"\n";
+    
+    if(n==B)
+    {
+        res.push_back(v);
+        return;
+    }
+    if(i>A)
+    return;
+    
+    v.push_back(i);
+    result(A,B,v,i+1);
+    v.pop_back();
+    result(A,B,v,i+1);
+}
+vector<vector<int> > Solution::combine(int A, int B)
+{
+    res.clear();
+    vector<int> v;
+    result(A,B,v,1);
+    return res;
+}

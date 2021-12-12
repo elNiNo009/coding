@@ -1,0 +1,25 @@
+class Solution 
+{
+public:
+    void moveZeroes(vector<int>& nums)
+    {
+        int l=nums.size();
+        int c=0;
+        int count=0;
+        while(c<nums.size())
+        {
+            if(nums[c]==0)
+            {
+                count++;
+                c++;
+            }
+            else
+            {
+                c++;
+            }
+        } 
+        nums.erase(std::remove(nums.begin(), nums.end(), 0), nums.end());
+        while(count-->0)
+            nums.push_back(0);
+    }
+ };

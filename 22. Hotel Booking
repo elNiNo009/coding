@@ -1,0 +1,27 @@
+boolean check(int arrival[], int departure[], int n, int k)
+{
+vector<pair<int,int>> ans;
+int max=0;
+int counter =0;
+for(int i=0;i<arrival.size();i++)
+{
+ ans.push_back(make_pair(arrival[i], 1)); 
+ ans.push_back(make_pair(departure[i], 0));
+}
+sort(ans.begin(),ans.end());
+for(int i=0;i<ans.size();i++)
+{
+if(ans[i].second==1)
+{
+counter++;
+if(counter>max)
+max=counter
+}
+else
+counter--;
+}
+if(k<=max)
+return 1;
+else 
+return 0;
+}
