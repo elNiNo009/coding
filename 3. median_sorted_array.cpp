@@ -72,12 +72,12 @@ float median(vector<int> arr)
      if(nums1[mid1]<=nums2[mid2])
         {
 vector<int>num1(nums1.begin()+mid1,nums1.end());
-         vector<int>num2(nums2.begin(),nums2.begin()+mid2);
+         vector<int>num2(nums2.begin(),nums2.end()-mid1);
 return findMedianSortedArrays(num1,num2);
         }
 
-vector<int>num1(nums1.begin(),nums1.begin()+mid1);
-         vector<int>num2(nums2.begin()+mid2,nums2.end());
+vector<int>num1(nums1.begin(),nums1.end()-mid1);
+         vector<int>num2(nums2.begin()+mid1,nums2.end());
 return findMedianSortedArrays(num1,num2);
 
 
